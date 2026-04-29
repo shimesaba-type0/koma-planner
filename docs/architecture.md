@@ -26,6 +26,12 @@ koma-planner/
     data-model.md
 ```
 
+## Local App Structure
+
+- `apps/web`: React + Vite frontend.
+- `apps/api`: FastAPI backend.
+- `docs/development.md`: local run commands and environment notes.
+
 ## Frontend Responsibilities
 
 - Goal input

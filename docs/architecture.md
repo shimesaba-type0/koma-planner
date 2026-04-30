@@ -46,10 +46,21 @@ koma-planner/
 
 - Project persistence
 - Task persistence
+- Project and task API endpoints
 - AI provider calls
 - AI response validation
 - API key storage and encryption when backend persistence is enabled
 - Consume authenticated user identity when auth is added
+
+## MVP 03 API Direction
+
+Until authentication middleware is added, FastAPI endpoints use the
+`X-Koma-Owner-Id` request header as a temporary owner scope bridge. Requests
+without the header use `dev-user`. This is intentionally local-prototype
+behavior; network-accessible deployments still require real authentication
+before private project data is exposed.
+
+See `docs/api.md` for the current endpoint contract.
 
 ## AI Breakdown Flow
 
@@ -114,10 +125,20 @@ koma-planner/
 
 - Project persistence
 - Task persistence
+- Project and task API endpoints
 - AI provider calls
 - AI response validation
 - API key storage and encryption when backend persistence is enabled
 - 認証追加後は、認証済み user identity を受け取って project data を owner ごとに扱う
+
+### MVP 03 API 方針
+
+認証 middleware を追加するまでは、FastAPI endpoints は `X-Koma-Owner-Id`
+request header を一時的な owner scope bridge として使います。Header がない場合は
+`dev-user` を使います。これは local prototype 用の挙動です。Network-accessible
+deployment では、private project data を公開する前に real authentication が必要です。
+
+現在の endpoint contract は `docs/api.md` を参照してください。
 
 ### AI Breakdown Flow
 

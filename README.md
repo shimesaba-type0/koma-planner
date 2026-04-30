@@ -1,5 +1,11 @@
 # Koma Planner
 
+## English
+
+Koma Planner turns a rough natural-language goal into small actionable todos that can be edited and saved.
+
+## Japanese
+
 自然言語でやりたいことを投げると、AI がいい感じに分割してそのまま TODO になる。
 
 ## App Layout

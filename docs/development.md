@@ -60,7 +60,7 @@ Backend tests, after activating `apps/api/.venv`:
 npm run test:api
 ```
 
-These same checks run in GitHub Actions for pull requests and pushes to `main` or `codex/**` branches.
+These same checks run in GitHub Actions for pull requests and pushes to `main`.
 
 ## MVP 01 Test Rationale
 

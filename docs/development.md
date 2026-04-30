@@ -71,6 +71,13 @@ cd apps/api
 
 These same checks run in GitHub Actions for pull requests and pushes to `main`.
 
+### MVP 04 Test Rationale
+
+MVP 04 adds the breakdown contract before paid AI provider calls. Its backend
+tests should cover deterministic mock breakdown output, malformed provider
+output rejection, request validation, optional `BreakdownRun` metadata storage,
+and owner-scoped project checks when a breakdown is attached to a project.
+
 ### MVP 03 Test Rationale
 
 MVP 03 exposes the existing persistence layer through FastAPI. Its backend
@@ -179,6 +186,13 @@ cd apps/api
 ```
 
 同じ check は、pull request と `main` への push で GitHub Actions でも実行されます。
+
+### MVP 04 Test Rationale
+
+MVP 04 は有料 AI provider call より先に breakdown contract を追加します。Backend
+tests では、deterministic な mock breakdown output、malformed provider output の
+rejection、request validation、任意の `BreakdownRun` metadata storage、breakdown を
+project に紐づける場合の owner-scoped project checks を確認します。
 
 ### MVP 03 Test Rationale
 

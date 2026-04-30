@@ -107,6 +107,41 @@ class ProjectDetailRead(ProjectRead):
     tasks: list[TaskRead]
 
 
+class BreakdownRequest(BaseModel):
+    goal_text: str = Field(min_length=1)
+    project_id: int | None = None
+    provider: str = Field(default="mock", min_length=1, max_length=100)
+    model: str | None = Field(default=None, max_length=200)
+
+    @field_validator("goal_text", "provider")
+    @classmethod
+    def text_must_not_be_blank(cls, value: str, info: ValidationInfo) -> str:
+        return _require_text(value, info.field_name)
+
+    @field_validator("model")
+    @classmethod
+    def optional_text_must_not_be_blank(cls, value: str | None) -> str | None:
+        if value is None:
+            return None
+        return _require_text(value, "model")
+
+
+class BreakdownTaskRead(BaseModel):
+    title: str
+    description: str | None
+    acceptance_criteria: str | None
+    position: int
+    estimate_minutes: int | None
+
+
+class BreakdownResponse(BaseModel):
+    provider: str
+    model: str
+    prompt_version: str
+    breakdown_run_id: int | None
+    tasks: list[BreakdownTaskRead]
+
+
 def _require_text(value: str, field_name: str) -> str:
     stripped = value.strip()
     if not stripped:

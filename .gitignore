@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 .venv/
+.pytest_cache/
+pytest-cache-files-*/
 .env
 .env.*
 !.env.example
@@ -11,6 +13,7 @@ node_modules/
 dist/
 build/
 .vite/
+*.tsbuildinfo
 
 # Local data
 *.sqlite
@@ -22,3 +25,7 @@ build/
 Thumbs.db
 .vscode/
 .idea/
+
+# Local dev artifacts
+.dev-logs/
+.dev-screenshots/

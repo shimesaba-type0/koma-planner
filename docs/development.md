@@ -71,6 +71,13 @@ cd apps/api
 
 These same checks run in GitHub Actions for pull requests and pushes to `main`.
 
+### MVP 03 Test Rationale
+
+MVP 03 exposes the existing persistence layer through FastAPI. Its backend
+tests should cover owner-scoped project endpoints, project creation with
+initial tasks, project reopen behavior, task editing, task completion toggles,
+task reordering, task deletion, and clear validation/error responses.
+
 ### MVP 02 Test Rationale
 
 MVP 02 adds the first persistence layer. Its backend tests cover database table creation, required owner scoping, project CRUD, task CRUD, and task reordering through internal repository functions.
@@ -172,6 +179,13 @@ cd apps/api
 ```
 
 同じ check は、pull request と `main` への push で GitHub Actions でも実行されます。
+
+### MVP 03 Test Rationale
+
+MVP 03 は既存の persistence layer を FastAPI から公開します。Backend tests では、
+owner-scoped project endpoints、initial tasks 付き project creation、project
+reopen behavior、task editing、task completion toggle、task reorder、task deletion、
+明確な validation/error response を確認します。
 
 ### MVP 02 Test Rationale
 

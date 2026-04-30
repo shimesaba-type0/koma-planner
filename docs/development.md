@@ -60,6 +60,22 @@ Backend tests, after activating `apps/api/.venv`:
 npm run test:api
 ```
 
+## MVP 01 Test Rationale
+
+MVP 01 is a scaffold ticket. It does not implement AI breakdowns, todo editing, persistence, authentication, or API key handling. Because of that, the test surface should prove that the two application entry points exist and can run, without pretending to validate product behavior that does not exist yet.
+
+The frontend check is `npm run build:web`. This is necessary because it verifies that the React/Vite app compiles, TypeScript accepts the current source, and the production bundle can be produced from `apps/web`.
+
+The backend check is `npm run test:api`, which currently covers `GET /api/health`. This is necessary because it verifies that the FastAPI app can be imported, the app router is wired, and the first API endpoint returns the expected response shape.
+
+Together, these checks are sufficient for MVP 01 because the issue acceptance criteria are about runnable project structure:
+
+- the frontend app exists and builds
+- the backend app exists and responds
+- local setup and verification commands are documented
+
+They are intentionally not sufficient for later MVP issues. Future tickets should add tests for their own behavior, such as database persistence, AI output validation, todo editing, save/reopen flows, and error handling.
+
 ## MVP 01 Notes
 
 This issue only creates the runnable application structure. Persistence, AI breakdowns, and todo editing are handled by later MVP issues.

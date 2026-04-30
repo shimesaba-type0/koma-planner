@@ -60,6 +60,8 @@ Backend tests, after activating `apps/api/.venv`:
 npm run test:api
 ```
 
+These same checks run in GitHub Actions for pull requests and pushes to `main` or `codex/**` branches.
+
 ## MVP 01 Test Rationale
 
 MVP 01 is a scaffold ticket. It does not implement AI breakdowns, todo editing, persistence, authentication, or API key handling. Because of that, the test surface should prove that the two application entry points exist and can run, without pretending to validate product behavior that does not exist yet.

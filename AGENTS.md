@@ -36,6 +36,7 @@ The product should feel less like a project-management suite and more like a wor
 
 - Markdown style: `.agents/markdown.md`
 - Project rules: `.agents/project-rules.md`
+- Issue implementation workflow: `.agents/issue-workflow.md`
 - Product brief: `docs/product-brief.md`
 - Architecture notes: `docs/architecture.md`
 - MVP scope: `docs/mvp-scope.md`

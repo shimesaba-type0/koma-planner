@@ -5,7 +5,8 @@
 ### Current Decision
 
 MVP 03 exposes the persisted project and task operations through FastAPI under
-the `/api` prefix.
+the `/api` prefix. MVP 04 adds the backend breakdown contract for turning a
+rough goal into validated task suggestions.
 
 Authentication is still deferred. Until authentication middleware exists, API
 requests are scoped by the `X-Koma-Owner-Id` header. If the header is omitted,
@@ -41,19 +42,43 @@ building the later auth service in this issue.
 - `DELETE /api/projects/{project_id}/tasks/{task_id}`
   - Deletes a task and its descendants.
 
+### Breakdown Endpoint
+
+- `POST /api/breakdowns`
+  - Accepts a rough `goal_text`.
+  - Returns normalized task suggestions with stable `position` values.
+  - Uses a local `mock` provider by default so development works without API
+    credits.
+  - Accepts optional `project_id`; when provided, a `BreakdownRun` metadata
+    record is stored for the owner-scoped project.
+
+Expected normalized task shape:
+
+```json
+{
+  "title": "Write a small API contract",
+  "description": "Optional details about the action",
+  "acceptance_criteria": "Optional completion check",
+  "position": 0,
+  "estimate_minutes": 30
+}
+```
+
 ### Validation
 
 Request bodies use typed schemas. Empty required text fields are rejected before
 data reaches the repository layer. Missing owner-scoped records return `404`.
 Invalid task reorder payloads return `400` because the task ID list must match
-the project's current task set exactly.
+the project's current task set exactly. Malformed breakdown provider output is
+rejected before tasks reach the frontend or database.
 
 ## Japanese
 
 ### 現在の決定
 
 MVP 03 では、永続化済みの project / task 操作を FastAPI の `/api` prefix
-配下で公開します。
+配下で公開します。MVP 04 では、rough goal を validated task suggestions に変換する
+backend breakdown contract を追加します。
 
 認証 middleware はまだ後続に回します。それまでの API request は
 `X-Koma-Owner-Id` header で owner scope を決めます。Header がない場合は、
@@ -89,9 +114,31 @@ model と揃えます。
 - `DELETE /api/projects/{project_id}/tasks/{task_id}`
   - Task とその descendants を削除します。
 
+### Breakdown Endpoint
+
+- `POST /api/breakdowns`
+  - Rough な `goal_text` を受け取ります。
+  - Stable な `position` を持つ normalized task suggestions を返します。
+  - Default では local `mock` provider を使うため、API credits なしで開発できます。
+  - 任意の `project_id` を受け取ります。指定された場合、owner-scoped project に
+    `BreakdownRun` metadata record を保存します。
+
+Expected normalized task shape:
+
+```json
+{
+  "title": "Write a small API contract",
+  "description": "Optional details about the action",
+  "acceptance_criteria": "Optional completion check",
+  "position": 0,
+  "estimate_minutes": 30
+}
+```
+
 ### Validation
 
 Request body は typed schema を使います。必須 text field が空の場合は、
 repository layer に届く前に reject します。Owner scope 内に record がない場合は
 `404` を返します。不正な task reorder payload は `400` を返します。Task ID list
-は project の現在の task set と完全に一致する必要があります。
+は project の現在の task set と完全に一致する必要があります。Malformed な
+breakdown provider output は、tasks が frontend や database に届く前に reject します。

@@ -67,13 +67,25 @@ See `docs/api.md` for the current endpoint contract.
 ```text
 User goal
   -> frontend sends breakdown request
-  -> backend loads provider settings
-  -> backend calls AI provider
+  -> backend loads provider settings or local mock provider
+  -> backend calls AI provider or mock provider
   -> backend validates structured response
   -> backend returns normalized tasks
   -> frontend renders tasks as editable todos
   -> user saves project
 ```
+
+## MVP 04 Breakdown Direction
+
+The first breakdown implementation defines the provider output contract before
+adding paid provider calls. The backend expects JSON with a `tasks` array. Each
+task must have a non-empty `title` and may include `description`,
+`acceptance_criteria`, and `estimate_minutes`. The backend normalizes stable
+positions and rejects malformed provider output.
+
+The default provider is `mock`, which creates deterministic local task
+suggestions without an API key. This keeps the product flow testable before API
+key configuration is implemented.
 
 ## Early Deployment Assumption
 
@@ -145,13 +157,25 @@ deployment では、private project data を公開する前に real authenticati
 ```text
 User goal
   -> frontend sends breakdown request
-  -> backend loads provider settings
-  -> backend calls AI provider
+  -> backend loads provider settings or local mock provider
+  -> backend calls AI provider or mock provider
   -> backend validates structured response
   -> backend returns normalized tasks
   -> frontend renders tasks as editable todos
   -> user saves project
 ```
+
+### MVP 04 Breakdown 方針
+
+最初の breakdown 実装では、有料 provider call より先に provider output contract
+を定義します。Backend は `tasks` array を持つ JSON を期待します。各 task は
+空ではない `title` を必須とし、`description`、`acceptance_criteria`、
+`estimate_minutes` を任意で持てます。Backend は stable position を normalize し、
+malformed provider output を reject します。
+
+Default provider は `mock` です。API key なしで deterministic な local task
+suggestions を作ります。これにより、API key configuration の実装前でも product
+flow を test できます。
 
 ### 初期 deployment 方針
 

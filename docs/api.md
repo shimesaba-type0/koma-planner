@@ -51,6 +51,8 @@ building the later auth service in this issue.
     credits.
   - Accepts optional `project_id`; when provided, a `BreakdownRun` metadata
     record is stored for the owner-scoped project.
+  - MVP 06 frontend calls this endpoint without `project_id` for an unsaved
+    workspace, then renders the returned suggestions as editable local todos.
 
 Expected normalized task shape:
 
@@ -122,6 +124,8 @@ model と揃えます。
   - Default では local `mock` provider を使うため、API credits なしで開発できます。
   - 任意の `project_id` を受け取ります。指定された場合、owner-scoped project に
     `BreakdownRun` metadata record を保存します。
+  - MVP 06 frontend は、保存前 workspace では `project_id` なしでこの endpoint を
+    呼び出し、返された suggestions を editable な local todo として表示します。
 
 Expected normalized task shape:
 

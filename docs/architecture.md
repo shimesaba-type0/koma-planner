@@ -87,6 +87,18 @@ The default provider is `mock`, which creates deterministic local task
 suggestions without an API key. This keeps the product flow testable before API
 key configuration is implemented.
 
+## MVP 06 Workspace Direction
+
+The first frontend breakdown workspace consumes the existing
+`POST /api/breakdowns` mock endpoint directly from the initial screen. A
+submitted goal creates an unsaved workspace state: loading, success, empty, and
+error states stay visible in the same work surface, and generated suggestions
+are converted into editable local todos immediately.
+
+MVP 06 does not persist the generated list automatically. Saving the project,
+reopening saved projects, and attaching breakdown runs to persisted projects
+remain later frontend work against the existing project/task API.
+
 ## Early Deployment Assumption
 
 The first version can run locally, but persisted data should still be scoped as private user data. Any network-accessible deployment should require login. Authentication will be implemented later in a separate self-hosted service, while Koma Planner keeps owner-scoped project records.
@@ -176,6 +188,18 @@ malformed provider output を reject します。
 Default provider は `mock` です。API key なしで deterministic な local task
 suggestions を作ります。これにより、API key configuration の実装前でも product
 flow を test できます。
+
+### MVP 06 Workspace 方針
+
+最初の frontend breakdown workspace は、初期画面から既存の
+`POST /api/breakdowns` mock endpoint を直接呼び出します。Goal を送信すると、
+保存前の workspace state が作られます。Loading、success、empty、error states は
+同じ作業面の中で表示し、生成された suggestions はすぐ editable な local todo に
+変換します。
+
+MVP 06 では generated list を自動保存しません。Project の保存、保存済み project
+の再オープン、persisted project に紐づく breakdown run の記録は、既存の
+project/task API を使う後続の frontend work とします。
 
 ### 初期 deployment 方針
 

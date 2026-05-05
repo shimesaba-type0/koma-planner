@@ -56,6 +56,12 @@ Frontend build and type check:
 npm run build:web
 ```
 
+Frontend state tests:
+
+```powershell
+npm run test:web
+```
+
 Backend tests, after activating `apps/api/.venv`:
 
 ```powershell
@@ -77,6 +83,15 @@ MVP 04 adds the breakdown contract before paid AI provider calls. Its backend
 tests should cover deterministic mock breakdown output, malformed provider
 output rejection, request validation, optional `BreakdownRun` metadata storage,
 and owner-scoped project checks when a breakdown is attached to a project.
+
+### MVP 06 Test Rationale
+
+MVP 06 connects the initial workspace UI to the existing breakdown endpoint.
+Frontend tests should cover the local workspace state transitions that are
+independent of browser rendering: request start, successful task adoption,
+empty breakdown results, understandable error state, and todo edits after
+generation. `npm run build:web` remains the rendering and TypeScript integration
+check.
 
 ### MVP 03 Test Rationale
 
@@ -172,6 +187,12 @@ Frontend build and type check:
 npm run build:web
 ```
 
+Frontend state tests:
+
+```powershell
+npm run test:web
+```
+
 Backend tests は、`apps/api/.venv` を有効化した後に実行します。
 
 ```powershell
@@ -193,6 +214,15 @@ MVP 04 は有料 AI provider call より先に breakdown contract を追加し�
 tests では、deterministic な mock breakdown output、malformed provider output の
 rejection、request validation、任意の `BreakdownRun` metadata storage、breakdown を
 project に紐づける場合の owner-scoped project checks を確認します。
+
+### MVP 06 Test Rationale
+
+MVP 06 は initial workspace UI を既存の breakdown endpoint に接続します。
+Frontend tests では、browser rendering に依存しない local workspace state
+transitions を確認します。具体的には request start、successful task adoption、
+empty breakdown results、understandable error state、generation 後の todo edit を
+対象にします。`npm run build:web` は引き続き rendering と TypeScript integration
+の check として使います。
 
 ### MVP 03 Test Rationale
 
